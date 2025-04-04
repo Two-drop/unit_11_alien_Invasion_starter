@@ -1,3 +1,9 @@
+""" Alien Invasion
+    author: Noah Kattner
+    date: 04/04/2025
+    Game where you control a ship horizontally and shoot lasers
+"""
+
 import sys
 import pygame
 from settings import Settings
