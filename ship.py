@@ -7,7 +7,7 @@ if TYPE_CHECKING:
 class Ship:
      """Class to store information for ship actions and display"""
      def __init__(self, game: 'AlienInvasion', arsenal: 'Arsenal') -> None:
-          """Initializes the ship
+          """Initializes the ship and screen boundaries
 
           Args:
               game (AlienInvasion): It can access the Alien Invasion game data
@@ -31,11 +31,14 @@ class Ship:
           self.arsenal = arsenal
 
      def update(self) -> None:
+          """Updates the movement and arsenal of the ship"""
           self._update_ship_movement()
           self.arsenal.update_arsenal()
      
 
      def _update_ship_movement(self) -> None:
+         """Manages the ship's speed and direction within the screen's 
+         boundaries"""
          temp_speed = self.settings.ship_speed
          if self.moving_right and self.rect.right < self.boundaries.right:
               self.x += temp_speed
@@ -45,8 +48,14 @@ class Ship:
          self.rect.x = self.x
 
      def draw(self) -> None:
+          """Displays the ship's bullets on the screen"""
           self.arsenal.draw()
           self.screen.blit(self.image, self.rect)
 
      def fire(self) -> bool:
+          """Ability to fire bullets from the arsenal
+
+          Returns:
+              bool: Checks to see if you can continue shooting
+          """
           return self.arsenal.fire_bullet()

@@ -33,7 +33,7 @@ class AlienInvasion():
         
 
     def run_game(self) -> None:
-        # Game loop
+        """Allows the game to continue running with a loop"""
         while self.running:
             self._check_events()
             self.ship.update()
@@ -41,11 +41,13 @@ class AlienInvasion():
             self.clock.tick(self.settings.FPS)
 
     def _update_screen(self) -> None:
+        """Displays the background and ship onto the screen."""
         self.screen.blit(self.bg, (0,0))
         self.ship.draw()
         pygame.display.flip()
 
     def _check_events(self) -> None:
+        """Allows to quit the game and checks the status of the key pressed"""
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 self.running = False
@@ -57,6 +59,8 @@ class AlienInvasion():
                 self._check_keyup_events(event)
 
     def _check_keydown_events(self, event) -> None:
+        """Moves the ship, plays a sound and exits game based on what key 
+        is being pressed on a keyboard"""
         if event.key == pygame.K_RIGHT:
             self.ship.moving_right = True
         elif event.key == pygame.K_LEFT:
@@ -71,6 +75,7 @@ class AlienInvasion():
             sys.exit()
 
     def _check_keyup_events(self, event) -> None:
+        """Stops the ship from moving if a key is let go off."""
         if event.key == pygame.K_RIGHT:
             self.ship.moving_right = False
         elif event.key == pygame.K_LEFT:
