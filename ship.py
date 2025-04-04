@@ -26,12 +26,14 @@ class Ship:
           self.image = pygame.transform.scale(self.image,
                (self.settings.ship_w, self.settings.ship_h)
                )
+          self.image = pygame.transform.rotate(self.image, -90)
           
           self.rect = self.image.get_rect()
-          self.rect.midbottom = self.boundaries.midbottom
-          self.moving_right = False
-          self.moving_left = False
-          self.x = float(self.rect.x)
+          self.rect.left = self.boundaries.left
+          self.rect.centery = self.boundaries.centery
+          self.moving_down = False
+          self.moving_up = False
+          self.y = float(self.rect.y)
           self.arsenal = arsenal
 
      def update(self) -> None:
@@ -44,12 +46,12 @@ class Ship:
          """Manages the ship's speed and direction within the screen's 
          boundaries"""
          temp_speed = self.settings.ship_speed
-         if self.moving_right and self.rect.right < self.boundaries.right:
-              self.x += temp_speed
-         if self.moving_left and self.rect.left > self.boundaries.left:
-              self.x -= temp_speed
+         if self.moving_down and self.rect.bottom < self.boundaries.bottom:
+              self.y += temp_speed
+         if self.moving_up and self.rect.top > self.boundaries.top:
+              self.y -= temp_speed
           
-         self.rect.x = self.x
+         self.rect.y = self.y
 
      def draw(self) -> None:
           """Displays the ship's bullets on the screen"""
