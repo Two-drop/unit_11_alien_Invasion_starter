@@ -2,11 +2,13 @@ import sys
 import pygame
 from settings import Settings
 from ship import Ship
+from arsenal import Arsenal
 
 
 class AlienInvasion():
-    
-    def __init__(self):
+    """Class that will handle the launching and main functionalities of the game"""
+    def __init__(self) -> None:
+        """Main function to initialize the game with its settings"""
         pygame.init()
         self.settings = Settings()
 
@@ -23,9 +25,14 @@ class AlienInvasion():
         self.running = True
         self.clock = pygame.time.Clock()
 
-        self.ship = Ship(self)
+        pygame.mixer.init()
+        self.laser_sound = pygame.mixer.Sound(self.settings.laser_sound)
+        self.laser_sound.set_volume(0.6)
 
-    def run_game(self):
+        self.ship = Ship(self, Arsenal(self))
+        
+
+    def run_game(self) -> None:
         # Game loop
         while self.running:
             self._check_events()
@@ -33,12 +40,12 @@ class AlienInvasion():
             self._update_screen()
             self.clock.tick(self.settings.FPS)
 
-    def _update_screen(self):
+    def _update_screen(self) -> None:
         self.screen.blit(self.bg, (0,0))
         self.ship.draw()
         pygame.display.flip()
 
-    def _check_events(self):
+    def _check_events(self) -> None:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 self.running = False
@@ -49,17 +56,21 @@ class AlienInvasion():
             elif event.type == pygame.KEYUP:
                 self._check_keyup_events(event)
 
-    def _check_keydown_events(self, event):
+    def _check_keydown_events(self, event) -> None:
         if event.key == pygame.K_RIGHT:
             self.ship.moving_right = True
         elif event.key == pygame.K_LEFT:
             self.ship.moving_left = True
+        elif event.key == pygame.K_SPACE:
+            if self.ship.fire():
+                self.laser_sound.play()
+                self.laser_sound.fadeout(250)
         elif event.key == pygame.K_q:
             self.running = False
             pygame.quit()
             sys.exit()
 
-    def _check_keyup_events(self, event):
+    def _check_keyup_events(self, event) -> None:
         if event.key == pygame.K_RIGHT:
             self.ship.moving_right = False
         elif event.key == pygame.K_LEFT:
