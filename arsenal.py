@@ -25,7 +25,7 @@ class Arsenal:
     def _remove_bullets_offscreen(self) -> None:
         """Removes offscreen bullets to allow shooting of new ones"""
         for bullet in self.arsenal.copy():
-            if bullet.rect.bottom <= 0:
+            if bullet.rect.left >= self.settings.screen_w:
                 self.arsenal.remove(bullet)
 
     def draw(self) -> None:
