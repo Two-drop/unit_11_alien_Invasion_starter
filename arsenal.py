@@ -1,8 +1,9 @@
 import pygame
 from bullet import Bullet
+from settings import Settings
 from typing import TYPE_CHECKING
 if TYPE_CHECKING:
-    from alien_invasion import AlienInvasion
+    from Lab12_nkattner_1 import AlienInvasion
 
 class Arsenal:
     """Class that handles the ship's ammunition"""

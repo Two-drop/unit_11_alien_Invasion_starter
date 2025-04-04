@@ -1,7 +1,7 @@
 """ Alien Invasion
     author: Noah Kattner
-    date: 04/04/2025
-    Game where you control a ship horizontally and shoot lasers
+    date: 04/03/2025
+    Game where you control a space ship and shoot lasers
 """
 
 import sys
@@ -64,13 +64,14 @@ class AlienInvasion():
             elif event.type == pygame.KEYUP:
                 self._check_keyup_events(event)
 
+
     def _check_keydown_events(self, event) -> None:
         """Moves the ship, plays a sound and exits game based on what key 
         is being pressed on a keyboard"""
-        if event.key == pygame.K_RIGHT:
-            self.ship.moving_right = True
-        elif event.key == pygame.K_LEFT:
-            self.ship.moving_left = True
+        if event.key == pygame.K_DOWN:
+            self.ship.moving_down = True
+        elif event.key == pygame.K_UP:
+            self.ship.moving_up = True
         elif event.key == pygame.K_SPACE:
             if self.ship.fire():
                 self.laser_sound.play()
@@ -82,10 +83,10 @@ class AlienInvasion():
 
     def _check_keyup_events(self, event) -> None:
         """Stops the ship from moving if a key is let go off."""
-        if event.key == pygame.K_RIGHT:
-            self.ship.moving_right = False
-        elif event.key == pygame.K_LEFT:
-            self.ship.moving_left = False
+        if event.key == pygame.K_DOWN:
+            self.ship.moving_down = False
+        elif event.key == pygame.K_UP:
+            self.ship.moving_up = False
 
 if __name__ == '__main__':
     ai = AlienInvasion()

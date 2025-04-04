@@ -1,7 +1,11 @@
+# ship.py
+# author: Noah Kattner
+# date: 04/03/2025
+
 import pygame
 from typing import TYPE_CHECKING
 if TYPE_CHECKING:
-     from alien_invasion import AlienInvasion
+     from Lab12_nkattner_1 import AlienInvasion
      from arsenal import Arsenal
 
 class Ship:
