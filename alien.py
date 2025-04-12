@@ -9,9 +9,9 @@ if TYPE_CHECKING:
     from Lab13_nkattner_1 import AlienInvasion
 
 class Alien(Sprite):
-    """Class that contains information regarding how a alien will work"""
+    """Class that will control alien ship's movement on screen"""
     def __init__(self, game: 'AlienInvasion', x: float, y: float) -> None:
-        """Initializes the ship's alien settings and collision
+        """Initializes the alien's settings and collision
 
         Args:
             game (AlienInvasion): references the Alien Invasion main file
@@ -19,7 +19,7 @@ class Alien(Sprite):
         super().__init__()
         self.game = game
         self.screen = game.screen
-        self.boundaries = game.screen
+        self.boundaries = game.screen.get_rect()
         self.settings = game.settings
 
         self.image = pygame.image.load(self.settings.alien_file)
@@ -31,13 +31,29 @@ class Alien(Sprite):
         self.rect = self.image.get_rect()
         self.rect.x = x
         self.rect.y = y
-        # self.x = float(self.rect.x)
+        self.x = float(self.rect.x)
+        self.y = float(self.rect.y)
     
     def update(self) -> None:
-        """Handles the speed and direction of the alien"""
-        # self.x += self.settings.fleet_speed
-        # self.rect.x = self.x
-        pass
+        """Handles the speed and direction of the alien within the screen's
+        boundaries"""
+        temp_speed = self.settings.fleet_speed
+        if self.check_edges():
+            self.settings.fleet_direction *= -1
+            self.x += self.settings.fleet_drop_speed
+        self.y += temp_speed * self.settings.fleet_direction
+        self.rect.y = self.y
+        self.rect.x = self.x
+
+
+    def check_edges(self) -> bool:
+        ''' Checks to see if the alien's ship hits an edge of the screen
+        
+        Returns:
+            bool: Return true if the alien hits one of the edges
+        '''
+        return (self.rect.bottom >= self.boundaries.bottom or 
+                self.rect.top <= self.boundaries.top)
 
     def draw_alien(self) -> None:
         """Allows the aliens to be drawn on screen"""
