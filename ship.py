@@ -5,7 +5,7 @@
 import pygame
 from typing import TYPE_CHECKING
 if TYPE_CHECKING:
-     from Lab12_nkattner_1 import AlienInvasion
+     from Lab13_nkattner_1 import AlienInvasion
      from arsenal import Arsenal
 
 class Ship:
@@ -26,10 +26,10 @@ class Ship:
           self.image = pygame.transform.scale(self.image,
                (self.settings.ship_w, self.settings.ship_h)
                )
-          self.image = pygame.transform.rotate(self.image, -90)
+          self.image = pygame.transform.rotate(self.image, 90)
           
           self.rect = self.image.get_rect()
-          self.rect.left = self.boundaries.left
+          self.rect.right = self.boundaries.right
           self.rect.centery = self.boundaries.centery
           self.moving_down = False
           self.moving_up = False

@@ -6,7 +6,7 @@ import pygame
 from pygame.sprite import Sprite
 from typing import TYPE_CHECKING
 if TYPE_CHECKING:
-    from Lab12_nkattner_1 import AlienInvasion
+    from Lab13_nkattner_1 import AlienInvasion
 
 class Bullet(Sprite):
     """Class that contains information regarding how a bullet will work"""
@@ -25,15 +25,15 @@ class Bullet(Sprite):
         self.image = pygame.transform.scale(self.image,
             (self.settings.bullet_w, self.settings.bullet_h)
             )
-        self.image = pygame.transform.rotate(self.image, -90)
+        self.image = pygame.transform.rotate(self.image, 90)
 
         self.rect = self.image.get_rect()
-        self.rect.midright = game.ship.rect.midright
+        self.rect.midleft = game.ship.rect.midleft
         self.x = float(self.rect.x)
     
     def update(self) -> None:
         """Handles the speed and direction of the bullet"""
-        self.x += self.settings.bullet_speed
+        self.x -= self.settings.bullet_speed
         self.rect.x = self.x
 
     def draw_bullet(self) -> None:

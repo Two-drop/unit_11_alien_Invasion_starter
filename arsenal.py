@@ -3,7 +3,7 @@ from bullet import Bullet
 from settings import Settings
 from typing import TYPE_CHECKING
 if TYPE_CHECKING:
-    from Lab12_nkattner_1 import AlienInvasion
+    from Lab13_nkattner_1 import AlienInvasion
 
 class Arsenal:
     """Class that handles the ship's ammunition"""
@@ -25,7 +25,7 @@ class Arsenal:
     def _remove_bullets_offscreen(self) -> None:
         """Removes offscreen bullets to allow shooting of new ones"""
         for bullet in self.arsenal.copy():
-            if bullet.rect.left >= self.settings.screen_w:
+            if bullet.rect.left <= 0:
                 self.arsenal.remove(bullet)
 
     def draw(self) -> None:
