@@ -70,6 +70,14 @@ class Ship:
           return self.arsenal.fire_bullet()
      
      def check_collisions(self, other_group) -> bool:
+          """Checks if aliens collide with player ship and resets ship
+
+          Arguments:
+              other_group -- other objects in the sprite group
+
+          Returns:
+              bool: if there is a collision returns true, else false
+          """
           if pygame.sprite.spritecollideany(self, other_group):
                self._center_ship()
                return True

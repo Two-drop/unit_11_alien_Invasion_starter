@@ -145,9 +145,23 @@ class AlienFleet:
             alien.draw_alien()
     
     def check_collisions(self, other_group) -> dict[any, list]:
+        """Checks collision between alien fleet and lasers
+
+        Arguments:
+            other_group -- other objects in the sprite group
+
+        Returns:
+            dict of events that will destroy the alien and the bullet if true
+        """
         return pygame.sprite.groupcollide(self.fleet, other_group, True, True)
 
     def check_fleet_right(self) -> bool:
+        """Checks if the fleet has hit the right side of the screen.
+
+        Returns:
+            bool: if the aliens have reached the right side return true,
+            else false
+        """
         alien: Alien
         for alien in self.fleet:
             if alien.rect.right >= self.settings.screen_w:
@@ -155,4 +169,9 @@ class AlienFleet:
         return False
     
     def check_destroyed_status(self) -> bool:
+        """Checks if an alien is destroyed
+
+        Returns:
+            returns false if an alien has been destroyed to remove them.
+        """
         return not self.fleet
