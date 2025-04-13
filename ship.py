@@ -29,12 +29,15 @@ class Ship:
           self.image = pygame.transform.rotate(self.image, 90)
           
           self.rect = self.image.get_rect()
-          self.rect.right = self.boundaries.right
-          self.rect.centery = self.boundaries.centery
+          self._center_ship()
           self.moving_down = False
           self.moving_up = False
-          self.y = float(self.rect.y)
           self.arsenal = arsenal
+
+     def _center_ship(self):
+         self.rect.right = self.boundaries.right
+         self.rect.centery = self.boundaries.centery
+         self.y = float(self.rect.y)
 
      def update(self) -> None:
           """Updates the movement and arsenal of the ship"""
@@ -65,3 +68,9 @@ class Ship:
               bool: Checks to see if you can continue shooting
           """
           return self.arsenal.fire_bullet()
+     
+     def check_collisions(self, other_group) -> bool:
+          if pygame.sprite.spritecollideany(self, other_group):
+               self._center_ship()
+               return True
+          return False
