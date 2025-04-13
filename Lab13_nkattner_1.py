@@ -57,6 +57,13 @@ class AlienInvasion():
     def _check_collisions(self):
         if self.ship.check_collisions(self.alien_fleet.fleet):
             self._reset_level()
+        
+        if self.alien_fleet.check_fleet_right():
+            self._reset_level()
+        collisions = self.alien_fleet.check_collisions(self.ship.arsenal.arsenal)
+        if collisions:
+            self.impact_sound.play()
+            self.impact_sound.fadeout(500)
 
     
 
