@@ -69,7 +69,8 @@ class AlienInvasion():
             self.impact_sound.play()
             self.impact_sound.fadeout(500)
 
-        
+        if self.alien_fleet.check_destroyed_status():
+            self._reset_level()
         
     def _check_game_status(self) -> None:
         if self.game_stats.ships_left > 0:
