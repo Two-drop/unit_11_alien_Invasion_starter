@@ -1,26 +1,25 @@
 # alien.py
 # author: Noah Kattner
-# date: 04/03/2025
+# date: 04/12/2025
 
 import pygame
 from pygame.sprite import Sprite
 from typing import TYPE_CHECKING
 if TYPE_CHECKING:
-    from Lab13_nkattner_1 import AlienInvasion
+    from alien_fleet import AlienFleet
 
 class Alien(Sprite):
     """Class that will control alien ship's movement on screen"""
-    def __init__(self, game: 'AlienInvasion', x: float, y: float) -> None:
+    def __init__(self, fleet: 'AlienFleet', x: float, y: float) -> None:
         """Initializes the alien's settings and collision
 
         Args:
             game (AlienInvasion): references the Alien Invasion main file
         """
         super().__init__()
-        self.game = game
-        self.screen = game.screen
-        self.boundaries = game.screen.get_rect()
-        self.settings = game.settings
+        self.screen = fleet.game.screen
+        self.boundaries = fleet.game.screen.get_rect()
+        self.settings = fleet.game.settings
 
         self.image = pygame.image.load(self.settings.alien_file)
         self.image = pygame.transform.scale(self.image,
