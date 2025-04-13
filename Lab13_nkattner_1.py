@@ -87,7 +87,6 @@ class AlienInvasion():
             sleep(0.5)
         else:
             self.game_active = False
-        print(self.game_stats.ships_left)
 
     def _reset_level(self):
         self.ship.arsenal.arsenal.empty()
