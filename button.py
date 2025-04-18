@@ -1,3 +1,7 @@
+"""button.py
+author: Noah Kattner
+date: 04/18/2025"""
+
 import pygame.font
 
 from typing import TYPE_CHECKING
@@ -13,7 +17,10 @@ class Button:
         self.settings = game.settings
         self.font = pygame.font.Font(self.settings.font_file, 
                     self.settings.button_font_size)
-        self.rect = pygame.Rect(0, 0, self.settings.button_w, self.settings.button_h)
+        
+        self.rect = pygame.Rect(self.settings.button_left_offset, 
+                    self.settings.button_top_offset, self.settings.button_w,
+                    self.settings.button_h)
         self.center = self.boundaries.center
         self._prep_msg(msg)
 
@@ -21,7 +28,7 @@ class Button:
     def _prep_msg(self, msg) -> None:
         self.msg_image = self.font.render(msg, True, self.settings.text_color, None)
         self.msg_image_rect = self.msg_image.get_rect()
-        self.msg_image_rect.center = self.rect.center
+        self.msg_image_rect.center = self.center
 
     
     def draw(self):
