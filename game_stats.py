@@ -1,4 +1,3 @@
-# from pathlib import Path
 import json
 
 from typing import TYPE_CHECKING
@@ -22,8 +21,10 @@ class GameStats():
         self.reset_stats()
     
     def init_saved_scores(self) -> None:
+        """ Initializes the settings to save the hi score into a json file
+        """
         self.path = self.settings.scores_file
-        if self.path.exists() and self.path.stat.__sizeof__() > 80:
+        if self.path.exists() and self.path.stat.__sizeof__() > 20:
             contents = self.path.read_text()
             scores = json.loads(contents)
             self.hi_score = scores.get('hi_score', 0)
@@ -32,6 +33,8 @@ class GameStats():
             self.save_scores()
     
     def save_scores(self) -> None:
+        """Saves the new hi score into the json file
+        """
         scores = {
             'hi_score': self.hi_score
         }
