@@ -6,7 +6,7 @@ from pathlib import Path
 class Settings:
      """Class to store settings to be used in other files."""
      def __init__(self) -> None:
-          """Initialize game settings"""
+          """Initialize static game settings"""
           self.name: str = 'Alien Invasion'
           self.screen_w = 1200
           self.screen_h = 800
@@ -39,6 +39,8 @@ class Settings:
           self.font_file = Path.cwd() / 'Assets' / 'Fonts' / 'Silkscreen' / 'Silkscreen-Bold.ttf'
 
      def initialize_dynamic_settings(self) -> None:
+          """Initializes dynamic game settings
+          """
           self.ship_speed = 5
           self.starting_ship_count = 3
 
@@ -49,8 +51,11 @@ class Settings:
 
           self.fleet_speed = 3
           self.fleet_drop_speed = 20
+          self.alien_points = 50
      
      def increase_difficulty(self) -> None:
+          """Increases level difficulty bases on a difficulty scale
+          """
           self.ship_speed *= self.difficulty_scale
           self.bullet_speed *= self.difficulty_scale
           self.fleet_speed *= self.difficulty_scale
