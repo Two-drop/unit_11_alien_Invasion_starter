@@ -3,7 +3,7 @@ from bullet import Bullet
 from settings import Settings
 from typing import TYPE_CHECKING
 if TYPE_CHECKING:
-    from Lab13_nkattner_1 import AlienInvasion
+    from Lab14_nkattner_1 import AlienInvasion
 
 class Arsenal:
     """Class that handles the ship's ammunition"""

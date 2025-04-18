@@ -6,7 +6,7 @@ import pygame
 from pygame.sprite import Sprite
 from typing import TYPE_CHECKING
 if TYPE_CHECKING:
-    from Lab13_nkattner_1 import AlienInvasion
+    from Lab14_nkattner_1 import AlienInvasion
 
 class Bullet(Sprite):
     """Class that contains information regarding how a bullet will work"""

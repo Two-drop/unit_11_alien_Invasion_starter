@@ -5,7 +5,7 @@ date: 04/03/2025"""
 import pygame
 from typing import TYPE_CHECKING
 if TYPE_CHECKING:
-     from Lab13_nkattner_1 import AlienInvasion
+     from Lab14_nkattner_1 import AlienInvasion
      from arsenal import Arsenal
 
 class Ship:

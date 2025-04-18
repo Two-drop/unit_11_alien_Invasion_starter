@@ -6,7 +6,7 @@ import pygame
 from typing import TYPE_CHECKING
 from alien import Alien
 if TYPE_CHECKING:
-    from Lab13_nkattner_1 import AlienInvasion
+    from Lab14_nkattner_1 import AlienInvasion
 
 class AlienFleet:
     """ Class to handle all display settings and movement for the alien fleet
