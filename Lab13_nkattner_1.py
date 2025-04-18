@@ -44,7 +44,7 @@ class AlienInvasion():
         self.ship = Ship(self, Arsenal(self))
         self.alien_fleet = AlienFleet(self)
         self.alien_fleet.create_fleet()
-        # game launch needed to reset alien ship duplication only on launch
+        """game launch needed to reset alien ship duplication only on launch"""
         self.game_launch = True
         self.game_active = True
         
@@ -53,7 +53,7 @@ class AlienInvasion():
         """Allows the game to continue running with a loop"""
         while self.running:
             self._check_events()
-            # Check if game launched to correct aliens drawn again onto each other
+            """Check if game launched to correct aliens drawn again onto each other"""
             if self.game_launch == True:
                 self._reset_level()
                 self.game_launch = False

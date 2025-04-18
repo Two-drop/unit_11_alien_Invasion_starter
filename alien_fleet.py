@@ -1,6 +1,6 @@
-# alien_fleet.py
-# author: Noah Kattner
-# date: 04/12/2025
+"""alien_fleet.py
+author: Noah Kattner
+date: 04/12/2025"""
 
 import pygame
 from typing import TYPE_CHECKING

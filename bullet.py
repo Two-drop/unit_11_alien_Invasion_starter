@@ -1,6 +1,6 @@
-# bullet.py
-# author: Noah Kattner
-# date: 04/03/2025
+"""bullet.py
+author: Noah Kattner
+date: 04/03/2025"""
 
 import pygame
 from pygame.sprite import Sprite

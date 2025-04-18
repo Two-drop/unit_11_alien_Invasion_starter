@@ -1,5 +1,5 @@
-# settings.py
-# date: 04/03/2025
+"""settings.py
+date: 04/03/2025"""
 
 from pathlib import Path
 

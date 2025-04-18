@@ -1,6 +1,6 @@
-# alien.py
-# author: Noah Kattner
-# date: 04/12/2025
+"""alien.py
+author: Noah Kattner
+date: 04/12/2025"""
 
 import pygame
 from pygame.sprite import Sprite

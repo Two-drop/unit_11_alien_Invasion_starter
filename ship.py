@@ -1,6 +1,6 @@
-# ship.py
-# author: Noah Kattner
-# date: 04/03/2025
+"""ship.py
+author: Noah Kattner
+date: 04/03/2025"""
 
 import pygame
 from typing import TYPE_CHECKING
