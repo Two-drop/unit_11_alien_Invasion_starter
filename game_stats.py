@@ -69,15 +69,13 @@ class GameStats():
         """
         if self.score > self.max_score:
             self.max_score = self.score
-        print(f'Max: {self.max_score}')
     
     def _update_hi_score(self) -> None:
         """ Updated the player's hi score
         """
         if self.score > self.hi_score:
             self.hi_score = self.score
-        # print(f'Max: {self.max_score}')
-    
+        
     def _update_score(self, collisions) -> None:
         """ Updated the base score of the player
 

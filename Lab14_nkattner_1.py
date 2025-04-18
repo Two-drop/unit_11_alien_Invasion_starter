@@ -10,7 +10,6 @@ from settings import Settings
 from game_stats import GameStats
 from ship import Ship
 from arsenal import Arsenal
-# from alien import Alien
 from alien_fleet import AlienFleet
 from time import sleep
 from button import Button
@@ -48,8 +47,6 @@ class AlienInvasion():
         self.ship = Ship(self, Arsenal(self))
         self.alien_fleet = AlienFleet(self)
         self.alien_fleet.create_fleet()
-        """game launch needed to reset alien ship duplication only on launch"""
-        self.game_launch = True
         self.play_button = Button(self, 'Play')
         self.game_active = False
         
@@ -58,10 +55,6 @@ class AlienInvasion():
         """Allows the game to continue running with a loop"""
         while self.running:
             self._check_events()
-            """Check if game launched to correct aliens drawn again onto each other"""
-            if self.game_launch == True:
-                self._reset_level()
-                self.game_launch = False
 
             if self.game_active:
                 self.ship.update()
@@ -71,6 +64,8 @@ class AlienInvasion():
             self.clock.tick(self.settings.FPS)
 
     def _check_collisions(self):
+        """ Checks for every collision in the game
+        """
         if self.ship.check_collisions(self.alien_fleet.fleet):
             self._check_game_status()
         if self.alien_fleet.check_fleet_right():
@@ -90,6 +85,8 @@ class AlienInvasion():
             self.HUD.update_level()
         
     def _check_game_status(self) -> None:
+        """Checks to see if the player is still alive to see if damage is taken
+        """
         if self.game_stats.ships_left > 0:
             self.game_stats.ships_left-= 1
             self._reset_level()
@@ -99,11 +96,15 @@ class AlienInvasion():
             self.game_active = False
 
     def _reset_level(self):
+        """Resets the everything in the current level
+        """
         self.ship.arsenal.arsenal.empty()
         self.alien_fleet.fleet.empty()
         self.alien_fleet.create_fleet()
 
     def restart_game(self) -> None:
+        """Restarts the whole game from level 1
+        """
         self.settings.initialize_dynamic_settings()
         self.game_stats.reset_stats()
         self.HUD.update_scores()
@@ -141,6 +142,8 @@ class AlienInvasion():
                 self._check_button_clicked()
 
     def _check_button_clicked(self):
+        """ Verifies that the mouse is clicking on the play button
+        """
         mouse_pos = pygame.mouse.get_pos()
         if self.play_button.check_clicked(mouse_pos):
             self.restart_game()

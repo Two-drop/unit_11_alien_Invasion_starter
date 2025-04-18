@@ -35,9 +35,11 @@ class Ship:
           self.arsenal = arsenal
 
      def _center_ship(self):
-         self.rect.right = self.boundaries.right
-         self.rect.centery = self.boundaries.centery
-         self.y = float(self.rect.y)
+          """Centers ship to the left sid of screen
+          """
+          self.rect.right = self.boundaries.right
+          self.rect.centery = self.boundaries.centery
+          self.y = float(self.rect.y)
 
      def update(self) -> None:
           """Updates the movement and arsenal of the ship"""
