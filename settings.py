@@ -12,7 +12,7 @@ class Settings:
           self.screen_h = 800
           self.FPS = 60
           self.bg_file = Path.cwd() / 'Assets' / 'images' / 'Starbasesnow.png'
-          self.difficulty_scale = 1.1
+          self.difficulty_scale = 1.12
 
           self.ship_file = Path.cwd() / 'Assets' / 'images' / 'ship2(no bg).png'
           self.ship_w = 40
@@ -43,7 +43,7 @@ class Settings:
           self.starting_ship_count = 3
 
           self.bullet_speed = 9
-          self.bullet_w = 25
+          self.bullet_w = 28
           self.bullet_h = 80
           self.bullet_amount = 5
 
@@ -54,3 +54,5 @@ class Settings:
           self.ship_speed *= self.difficulty_scale
           self.bullet_speed *= self.difficulty_scale
           self.fleet_speed *= self.difficulty_scale
+          self.fleet_drop_speed *= self.difficulty_scale
+          self.bullet_w *= self.difficulty_scale
