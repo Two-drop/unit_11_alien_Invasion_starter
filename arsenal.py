@@ -1,3 +1,6 @@
+"""arsenal.py
+date: 04/03/2025"""
+
 import pygame
 from bullet import Bullet
 from settings import Settings

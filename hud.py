@@ -1,3 +1,7 @@
+"""hud.py
+author: Noah Kattner
+date: 04/18/2025"""
+
 import pygame
 
 class HUD:

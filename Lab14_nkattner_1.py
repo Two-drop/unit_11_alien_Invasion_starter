@@ -108,13 +108,14 @@ class AlienInvasion():
         self.settings.initialize_dynamic_settings()
         self.game_stats.reset_stats()
         self.HUD.update_scores()
+        self.HUD.update_level()
         self._reset_level()
         self.ship._center_ship()
         self.game_active = True
         pygame.mouse.set_visible(False)
 
     def _update_screen(self) -> None:
-        """Displays the background and ship onto the screen."""
+        """Displays all ships and background and a play button when not playing"""
         self.screen.blit(self.bg, (0,0))
         self.ship.draw()
         self.alien_fleet.draw()
