@@ -48,6 +48,7 @@ class AlienInvasion():
         self.alien_fleet = AlienFleet(self)
         self.alien_fleet.create_fleet()
         self.play_button = Button(self, 'Play')
+        self.deactivate_play_button = False
         self.game_active = False
         
 
@@ -94,6 +95,7 @@ class AlienInvasion():
             sleep(0.5)
         else:
             self.game_active = False
+            self.deactivate_play_button = False
 
     def _reset_level(self):
         """Resets the everything in the current level
@@ -105,6 +107,7 @@ class AlienInvasion():
     def restart_game(self) -> None:
         """Restarts the whole game from level 1
         """
+        self.deactivate_play_button = True
         self.settings.initialize_dynamic_settings()
         self.game_stats.reset_stats()
         self.HUD.update_scores()
@@ -121,7 +124,7 @@ class AlienInvasion():
         self.alien_fleet.draw()
         self.HUD.draw()
 
-        if not self.game_active:
+        if not self.game_active and not self.deactivate_play_button:
             self.play_button.draw()
             pygame.mouse.set_visible(True)
         
@@ -146,7 +149,7 @@ class AlienInvasion():
         """ Verifies that the mouse is clicking on the play button
         """
         mouse_pos = pygame.mouse.get_pos()
-        if self.play_button.check_clicked(mouse_pos):
+        if self.play_button.check_clicked(mouse_pos) and not self.deactivate_play_button:
             self.restart_game()
 
 
